@@ -1,208 +1,130 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/HuDt6KLx)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19184512&assignment_repo_type=AssignmentRepo)
-# Algorithms and Programming II - Semester Capstone Project
+# K-Means Algorithm - Interactive Visualization
 
-## Overview
+## Project Overview
 
-Welcome to the Algorithms and Programming II course project at Fırat University, Technology Faculty, Software Engineering Department. This project involves developing interactive web applications to implement, visualize, and analyze algorithms using Python and Streamlit.
+This project is an interactive web application that implements and visualizes the **K-Means Clustering Algorithm**, developed as part of the Algorithms and Programming II course at Fırat University, Software Engineering Department.
 
-## Learning Objectives
+## Algorithm Description
 
-This project is designed to help you:
+The K-Means algorithm is an unsupervised learning technique used for clustering data points into a predefined number of clusters (k). It works by minimizing the within-cluster sum of squares (inertia) and is widely used in data mining, computer vision, and pattern recognition tasks.
 
-- Implement complex algorithms in Python
-- Create interactive visualizations that demonstrate algorithm behavior
-- Analyze and understand the time and space complexity of algorithms
-- Practice modern software development workflows using Git and GitHub
-- Gain experience with web application development and deployment
-- Improve technical documentation skills
+### Problem Definition
 
-## Technology Stack
+The problem is to group a given dataset into **k clusters** such that data points within the same cluster are as similar as possible, while points from different clusters are as dissimilar as possible. It is particularly useful when the structure or labeling of data is unknown.
 
-- **Programming Language:** Python 3.8+
-- **Web Framework:** Streamlit
-- **Version Control:** Git and GitHub
-- **Deployment:** Streamlit Cloud
+### Mathematical Background
 
-## Getting Started
+The K-Means algorithm aims to minimize the following **objective function**:
 
-### Prerequisites
+$$
+J = \sum_{i=1}^{k} \sum_{x \in C_i} \| x - \mu_i \|^2
+$$
 
-Before you begin, ensure you have the following installed:
+Where:
 
-- Python 3.8 or higher
-- Git
-- A GitHub account
-- A text editor or IDE (e.g., VS Code, PyCharm)
+* $k$: Number of clusters
+* $C_i$: Set of points in cluster i
+* $\mu_i$: Centroid of cluster i
+* $\| x - \mu_i \|^2$: Squared Euclidean distance between a point and its cluster centroid
 
-### Setting Up Your Development Environment
+### Algorithm Steps
 
-1. **Accept the GitHub Classroom Assignment**
-   - Click on the assignment link shared by your instructor
-   - This will create a personal copy of the project template in your GitHub account
+1. **Initialize** k centroids randomly.
+2. **Assign** each data point to the closest centroid.
+3. **Update** centroids by calculating the mean of all points assigned to that cluster.
+4. **Repeat** steps 2–3 until centroids no longer move significantly or a maximum number of iterations is reached.
 
-2. **Clone Your Repository**
-   ```bash
-   git clone https://github.com/firat-university-algorithms/your-project-repo.git
-   cd your-project-repo
-   ```
-
-3. **Create a Virtual Environment**
-   ```bash
-   # On Windows
-   python -m venv venv
-   venv\Scripts\activate
-
-   # On macOS/Linux
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-## Project Requirements
-
-### Core Components
-
-Each project must include:
-
-1. **Algorithm Implementation**
-   - Correctly implement your assigned algorithm
-   - Handle edge cases and error conditions
-   - Optimize for performance where possible
-
-2. **Interactive Interface**
-   - Create user controls to manipulate inputs and parameters
-   - Allow users to adjust algorithm settings and see results in real-time
-   - Provide clear instructions for users
-
-3. **Visualization**
-   - Create visual representations of how your algorithm works
-   - Illustrate the algorithm's step-by-step execution
-   - Use appropriate charts, graphs, or custom visualizations
-
-4. **Step-by-Step Explanation**
-   - Include an option to walk through the algorithm's execution
-   - Explain each major step in the algorithm
-   - Highlight key decisions and operations
-
-5. **Complexity Analysis**
-   - Document the time complexity (Big O notation)
-   - Document the space complexity
-   - Explain how the complexity changes with different inputs
-
-6. **Test Cases**
-   - Include various examples demonstrating algorithm behavior
-   - Provide best-case, average-case, and worst-case scenarios
-   - Allow users to input custom test cases
-
-### Repository Structure
-
-Your repository should contain:
+### Pseudocode
 
 ```
-project-repository/
-├── app.py                     # Main Streamlit application
-├── algorithm.py               # Implementation of your algorithm
-├── utils.py                   # Helper functions
-├── visualizer.py              # Visualization components
-├── README.md                  # Project documentation
-├── requirements.txt           # Python package dependencies
-├── test_algorithm.py          # Unit tests
-├── examples/                  # Example inputs and outputs
-│   ├── example1.json
-│   └── example2.json
-├── data/                      # Sample data files (if applicable)
-│   ├── sample1.csv
-│   └── sample2.csv
-└── docs/                      # Additional documentation
-    ├── algorithm_description.md
-    └── screenshots/
-        ├── screenshot1.png
-        └── screenshot2.png
+Initialize k centroids randomly
+repeat
+    Assign each point to the nearest centroid
+    Update centroids as the mean of the assigned points
+until centroids converge or max_iterations reached
 ```
 
-## Documentation Requirements
+## Complexity Analysis
 
-Your README.md should include:
+### Time Complexity
 
-- Project title and description
-- Algorithm explanation with mathematical notation when appropriate
-- Installation and usage instructions
-- Screenshots of the application
-- Complexity analysis with explanations
-- Examples of inputs and outputs
-- Known limitations and future improvements
-- References and resources used
+* **Best Case:** O(nkt) - When convergence is quick
+* **Average Case:** O(nkt) - n: number of data points, k: number of clusters, t: iterations
+* **Worst Case:** O(nkt) - In case of slow convergence
 
-## Deployment Instructions
+### Space Complexity
 
-### Deploying to Streamlit Cloud
+* O(n + k) - For storing data points and centroids
 
-1. Create a free account on [Streamlit Cloud](https://streamlit.io/cloud)
-2. Connect your GitHub repository
-3. Configure your app settings
-4. Deploy your application
-5. Add the deployment URL to your README.md
+## Features
 
-## Evaluation Criteria
+* Interactive visualization of K-Means clustering
+* Dynamic cluster number adjustment
+* Real-time centroid updates
+* Visual feedback for each clustering iteration
 
-Your project will be evaluated based on:
+## Screenshots
 
-- Correctness of algorithm implementation (40%)
-- Quality of visualization and user interface (20%)
-- Documentation quality (15%)
-- Code organization and clarity (15%)
-- Creativity and additional features (10%)
+![Main Interface](/Users/elifhusnaturkay/github-classroom/FiratUniversity-IJDP-SoftEng/algorithms-and-programming-ii-semester-capstone-project-elifhusnaturkay/k_means_streamlit.png)
 
-## Submission Guidelines
+## Usage Guide
 
-1. Ensure your code is well-commented and follows Python best practices
-2. Verify all required components are included
-3. Test your application thoroughly
-4. Update your README.md with all required information
-5. Commit and push your final changes to GitHub
-6. Deploy your application to Streamlit Cloud
-7. Submit the final version by the deadline: **June 23, 2025, 23:59**
+1. Select or upload a dataset
+2. Choose the desired number of clusters (k)
+3. Click 'Run Algorithm' to initiate clustering
+4. Observe the visualization of cluster assignments and centroid movements
 
-## Resources
+### Example Inputs
 
-### Streamlit Resources
-- [Streamlit Documentation](https://docs.streamlit.io)
-- [Streamlit Components](https://streamlit.io/components)
-- [Streamlit Deployment](https://docs.streamlit.io/cloud)
+* Dataset with 2D coordinates and k = 3 → clusters the data into 3 groups
+* Dataset with non-linearly separable data → demonstrates K-Means limitations
 
-### Algorithm Resources
-- Introduction to Algorithms (CLRS) - 4th Edition
-- Algorithm Design Manual - Steven Skiena
-- [VisuAlgo](https://visualgo.net)
-- [Algorithm Visualizations](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
+## Testing
 
-### GitHub Resources
-- [Git & GitHub for Beginners](https://docs.github.com/en/get-started)
-- [GitHub Classroom Guide](https://github.com/education/classroom)
+### Test Cases
 
-## Frequently Asked Questions
+* Dataset with obvious cluster separation (expected: correct assignment)
+* Dataset with overlapping clusters (expected: reasonable separation)
+* Dataset with noise/outliers (expected: core clustering remains accurate)
 
-**Q: Can I change my assigned algorithm?**  
-A: Only in exceptional cases. Please contact your instructor with a valid reason if you need to request a change.
+## Limitations and Future Improvements
 
-**Q: Can I use additional libraries beyond the core requirements?**  
-A: Yes, but ensure they are properly documented in your requirements.txt file.
+### Current Limitations
 
-**Q: How detailed should the visualization be?**  
-A: It should clearly illustrate each major step of the algorithm's execution. The visualization should help someone understand how the algorithm works.
+* Does not handle non-convex clusters well
+* Sensitive to initial centroid selection
+* Requires specifying k manually
 
-**Q: Can I work in groups?**  
-A: No, this is an individual project. Each student has a unique algorithm assignment.
+### Planned Improvements
 
-**Q: What if I encounter technical difficulties with Streamlit deployment?**  
-A: Document the issue in your README and we can explore alternative deployment options if necessary.
+* Implement k-means++ initialization
+* Integrate elbow method to suggest optimal k
+* Extend to support multi-dimensional data and more advanced distance metrics
 
-## Contact Information
+## References and Resources
 
-For questions or assistance, please contact:
+### Academic References
 
-- **Instructor:** Assoc. Prof. Ferhat UÇAR
-- **Office Hours:** 
-  - Fridays: 10:30 - 12:00
+1. MacQueen, J. (1967). Some methods for classification and analysis of multivariate observations.
+2. Jain, A. K. (2010). Data clustering: 50 years beyond K-means.
+3. Lloyd, S. P. (1982). Least squares quantization in PCM.
 
-- **Office Location:** Technology Faculty - A Section, 3rd floor.
+### Online Resources
+
+* [https://scikit-learn.org/stable/modules/clustering.html#k-means](https://scikit-learn.org/stable/modules/clustering.html#k-means)
+* [https://en.wikipedia.org/wiki/K-means\_clustering](https://en.wikipedia.org/wiki/K-means_clustering)
+* [https://www.geeksforgeeks.org/ml-k-means-algorithm/](https://www.geeksforgeeks.org/ml-k-means-algorithm/)
+
+## Author
+
+* **Name:** \[Elif Hüsna Turkay]
+* **Student ID:** \[220543003]
+* **GitHub:** \[elifhusnaturkay]
+
+## Acknowledgements
+
+I would like to thank Assoc. Prof. Ferhat UÇAR for guidance throughout this project, and the course instructors who contributed to the foundation of this project.
+
+---
+
+*This project was developed as part of the Algorithms and Programming II course at Fırat University, Technology Faculty, Software Engineering Department.*
