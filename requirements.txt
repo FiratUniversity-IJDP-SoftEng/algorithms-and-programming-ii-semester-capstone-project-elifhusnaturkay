@@ -1,0 +1,5 @@
+streamlit==1.16.0
+numpy==1.23.0 
+matplotlib==3.6.0 
+altair
+
